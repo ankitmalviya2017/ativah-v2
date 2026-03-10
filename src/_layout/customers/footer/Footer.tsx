@@ -14,28 +14,40 @@ export const Footer = () => {
             </h3>
             <ul className="space-y-4">
               <li>
-                <Link href="#" className="hover:text-white transition-colors">
+                <Link
+                  href="/new-arrivals"
+                  className="hover:text-white transition-colors"
+                >
                   New Arrivals
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:text-white transition-colors">
+                <Link
+                  href="/men"
+                  className="hover:text-white transition-colors"
+                >
                   Men's Fashion
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:text-white transition-colors">
+                <Link
+                  href="/women"
+                  className="hover:text-white transition-colors"
+                >
                   Women's Fashion
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:text-white transition-colors">
+                <Link
+                  href="/accessories"
+                  className="hover:text-white transition-colors"
+                >
                   Accessories
                 </Link>
               </li>
               <li>
                 <Link
-                  href="#"
+                  href="/sale"
                   className="hover:text-white transition-colors text-red-500"
                 >
                   Sale Extravaganza
