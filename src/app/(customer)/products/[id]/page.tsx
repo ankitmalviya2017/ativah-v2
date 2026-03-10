@@ -1,4 +1,4 @@
-import { fetchProductById } from "@/lib/api/products";
+import { fetchProductById } from "@/lib/data/products";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { Metadata, ResolvingMetadata } from "next";

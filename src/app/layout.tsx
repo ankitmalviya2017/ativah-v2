@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
-import { QueryProvider } from "@/providers/QueryProvider";
+import { ReduxProvider } from "@/providers/ReduxProvider";
 
 const font = Plus_Jakarta_Sans({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "SNITCH - Modern Menswear",
+  title: "Ativah - Modern Menswear",
   description:
-    "Shop the latest in men's fashion. Snitch offers trendy and stylish clothing for men.",
+    "Shop the latest in men's fashion. Ativah offers trendy and stylish clothing for men.",
 };
 
 export default function RootLayout({
@@ -19,7 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${font.className} min-h-screen flex flex-col`}>
-        <QueryProvider>{children}</QueryProvider>
+        <ReduxProvider>{children}</ReduxProvider>
       </body>
     </html>
   );
