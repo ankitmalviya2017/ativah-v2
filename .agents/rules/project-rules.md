@@ -79,6 +79,14 @@ export const XxyzProductCard = () => { ... }
 
 ---
 
+## 🧭 Navigation Structure
+
+- `src/navigate/paths.ts`: Centralized object for all application route definitions.
+- **Navigation Rule**: Always use the `paths` object from `@/navigate/paths` for internal links, redirects, and programmatic navigation.
+- **Prohibition**: Never hardcode route strings directly in components or logic (e.g., `<Link href="/shop">` is forbidden; use `<Link href={paths.shop()}>` instead).
+
+---
+
 ## 🏗️ Component Structure
 
 - **Standard Components**: Reusable global UI elements live in `src/_components/`.

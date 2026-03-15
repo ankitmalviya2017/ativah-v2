@@ -25,7 +25,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
   }
 
   // Generated breadcrumbs logic
-  const segments = [product.gender, product.category, product.brand];
+  const segments = ["shop", product.gender, product.category, product.brand];
 
   return (
     <main className="min-h-screen bg-white">
@@ -35,7 +35,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-10">
           {/* Visual Presentation Left Pane */}
           <div className="flex flex-col gap-4">
-            <div className="relative w-full aspect-[3/4] bg-gray-100 rounded-lg overflow-hidden border border-gray-100 shadow-sm">
+            <div className="relative w-full aspect-3/4 bg-gray-100 rounded-lg overflow-hidden border border-gray-100 shadow-sm">
               <Image
                 src={product.images[0]}
                 alt={product.name}

@@ -29,6 +29,7 @@ src/
 ├── app/                  # Next.js App Router (routes, pages, server components)
 ├── hooks/                # Custom React hooks and Zustand stores
 ├── lib/                  # Shadcn utilities, shared helpers, and formatters
+├── navigate/             # Centralized route definitions and navigation utilities
 ├── providers/            # React context providers (Redux, Theme, etc.)
 ├── redux/                # Global state & API caching (RTK Query)
 ├── services/             # External API services and business logic classes
