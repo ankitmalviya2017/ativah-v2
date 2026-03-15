@@ -2,13 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Navigation, Pagination } from "swiper/modules";
-
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
+import { Slider } from "../../../slider/Slider";
+import { NavigationArrows } from "../../../slider/SliderArrows";
 
 const heroSlides = [
   {
@@ -42,53 +37,51 @@ const heroSlides = [
 
 export const HeroSlider = () => {
   return (
-    <section className="relative w-full h-[80vh] min-h-[600px] overflow-hidden">
-      <Swiper
-        modules={[Autoplay, Navigation, Pagination]}
-        spaceBetween={0}
+    <section className="relative w-full h-[80vh] min-h-[600px] overflow-hidden group">
+      <Slider
         slidesPerView={1}
-        navigation
-        pagination={{ clickable: true }}
         autoplay={{ delay: 5000, disableOnInteraction: false }}
         loop={true}
-        className="w-full h-full"
+        className="w-full h-full [&_.swiper-pagination-bullet]:bg-white! [&_.swiper-pagination-bullet]:opacity-50 [&_.swiper-pagination-bullet-active]:opacity-100 [&_.swiper-pagination-bullet-active]:w-6! [&_.swiper-pagination-bullet-active]:rounded-sm!"
+        slideClassName="h-full"
+        navigation={true}
+        pagination={{ clickable: true }}
+        customNavigation={<NavigationArrows />}
       >
         {heroSlides.map((slide) => (
-          <SwiperSlide key={slide.id}>
-            <div className="relative w-full h-full">
-              {/* Background Image */}
-              <div className="absolute inset-0">
-                <Image
-                  src={slide.image}
-                  alt={slide.title}
-                  fill
-                  className="object-cover object-center"
-                  priority={slide.id === 1}
-                  sizes="100vw"
-                />
-                {/* Overlay gradient for readability */}
-                <div className="absolute inset-0 bg-black/30 bg-gradient-to-t from-black/60 to-transparent" />
-              </div>
-
-              {/* Content */}
-              <div className="relative z-10 flex flex-col items-center justify-center w-full h-full text-center px-4">
-                <span className="text-white/90 text-sm md:text-lg font-bold uppercase tracking-[0.3em] mb-4">
-                  {slide.subtitle}
-                </span>
-                <h1 className="text-white text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter mb-8 max-w-5xl leading-none">
-                  {slide.title}
-                </h1>
-                <Link
-                  href={slide.ctaLink}
-                  className="bg-white text-black px-8 py-4 text-sm font-bold uppercase tracking-widest hover:bg-neutral-200 transition-colors duration-300"
-                >
-                  {slide.ctaText}
-                </Link>
-              </div>
+          <div key={slide.id} className="relative w-full h-full">
+            {/* Background Image */}
+            <div className="absolute inset-0">
+              <Image
+                src={slide.image}
+                alt={slide.title}
+                fill
+                className="object-cover object-center"
+                priority={slide.id === 1}
+                sizes="100vw"
+              />
+              {/* Overlay gradient for readability */}
+              <div className="absolute inset-0 bg-black/30 bg-gradient-to-t from-black/60 to-transparent" />
             </div>
-          </SwiperSlide>
+
+            {/* Content */}
+            <div className="relative z-10 flex flex-col items-center justify-center w-full h-full text-center px-4">
+              <span className="text-white/90 text-sm md:text-lg font-bold uppercase tracking-[0.3em] mb-4">
+                {slide.subtitle}
+              </span>
+              <h1 className="text-white text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter mb-8 max-w-5xl leading-none">
+                {slide.title}
+              </h1>
+              <Link
+                href={slide.ctaLink}
+                className="bg-white text-black px-8 py-4 text-sm font-bold uppercase tracking-widest hover:bg-neutral-200 transition-colors duration-300"
+              >
+                {slide.ctaText}
+              </Link>
+            </div>
+          </div>
         ))}
-      </Swiper>
+      </Slider>
     </section>
   );
 };

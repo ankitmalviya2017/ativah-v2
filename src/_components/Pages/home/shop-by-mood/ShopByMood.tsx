@@ -8,14 +8,14 @@ const moods = [
     id: 1,
     title: "Summer",
     image:
-      "https://images.unsplash.com/photo-1525049964585-70335832a4e9?w=800&q=80",
+      "/images/replacements/mood_summer.png",
     link: "/mood/summer",
   },
   {
     id: 2,
     title: "Dinner",
     image:
-      "https://images.unsplash.com/photo-1510419358249-14a9c68ea78f?w=800&q=80",
+      "/images/replacements/mood_dinner.png",
     link: "/mood/dinner",
   },
   {

@@ -43,7 +43,7 @@ const categories = [
     id: 6,
     title: "Co-ords",
     image:
-      "https://images.unsplash.com/photo-1434389678232-040154bc21cb?w=600&q=80",
+      "https://images.unsplash.com/photo-1551028712-031cf3a1032b?w=600&q=80",
     link: "/category/co-ords",
   },
   {

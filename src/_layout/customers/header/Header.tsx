@@ -1,3 +1,5 @@
+'use client';
+
 import React from "react";
 import Link from "next/link";
 import { Search, Heart, ShoppingBag, Menu } from "lucide-react";
@@ -8,8 +10,19 @@ import {
   SheetHeader,
   SheetTitle,
 } from "@/_components/ui/sheet";
+import { Button } from "@/_components/ui/button";
+import { useSelector, useDispatch } from "react-redux";
+import { RootState, AppDispatch } from "../../../redux/store/store";
+import { checkAuth } from "../../../redux/slices/authSlice";
+import { useEffect } from "react";
 
 export const Header = () => {
+  const dispatch = useDispatch<AppDispatch>();
+  const isAuthenticated = useSelector((state: RootState) => state.auth.isAuthenticated);
+
+  useEffect(() => {
+    dispatch(checkAuth());
+  }, [dispatch]);
   const navLinks = [
     { href: "/new-arrivals", label: "New" },
     { href: "/men", label: "Men" },
@@ -85,21 +98,41 @@ export const Header = () => {
             <button className="p-2 text-gray-900 hover:bg-gray-100 rounded-full transition-colors hidden sm:block">
               <Search size={20} />
             </button>
-            <Link
-              href="/wishlist"
-              className="p-2 text-gray-900 hover:bg-gray-100 rounded-full transition-colors"
-            >
-              <Heart size={20} />
-            </Link>
-            <Link
-              href="/cart"
-              className="p-2 text-gray-900 hover:bg-gray-100 rounded-full transition-colors relative"
-            >
-              <ShoppingBag size={20} />
-              <span className="absolute top-1 right-1 flex h-3 w-3 items-center justify-center rounded-full bg-black text-[9px] font-bold text-white">
-                2
-              </span>
-            </Link>
+            {isAuthenticated ? (
+              <>
+                <Link
+                  href="/wishlist"
+                  className="p-2 text-gray-900 hover:bg-gray-100 rounded-full transition-colors"
+                >
+                  <Heart size={20} />
+                </Link>
+                <Link
+                  href="/cart"
+                  className="p-2 text-gray-900 hover:bg-gray-100 rounded-full transition-colors relative"
+                >
+                  <ShoppingBag size={20} />
+                  <span className="absolute top-1 right-1 flex h-3 w-3 items-center justify-center rounded-full bg-black text-[9px] font-bold text-white">
+                    2
+                  </span>
+                </Link>
+              </>
+            ) : (
+              <div className="flex items-center gap-2">
+                <Link href="/login">
+                  <Button
+                    variant="outline"
+                    className="text-sm font-semibold uppercase tracking-wider border-gray-300 hover:bg-gray-50"
+                  >
+                    Login
+                  </Button>
+                </Link>
+                <Link href="/register">
+                  <Button className="text-sm font-semibold uppercase tracking-wider bg-black hover:bg-gray-900 text-white">
+                    Sign Up
+                  </Button>
+                </Link>
+              </div>
+            )}
           </div>
         </div>
       </div>

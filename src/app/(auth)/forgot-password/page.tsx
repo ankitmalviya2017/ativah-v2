@@ -4,15 +4,15 @@ import { Input } from "@/_components/ui/input";
 import Image from "next/image";
 import BackToHome from "@/_components/buttons/back-to-home/BackToHome.component";
 
-export default function LoginPage() {
+export default function ForgotPasswordPage() {
   return (
     <div className="w-full max-w-md space-y-8">
       <div className="text-center space-y-2">
         <h1 className="text-3xl font-bold uppercase tracking-widest">
-          Welcome Back
+          Forgot Password
         </h1>
         <p className="text-muted-foreground text-sm uppercase tracking-wider">
-          Log in to your account
+          Recover your account access
         </p>
       </div>
 
@@ -23,35 +23,12 @@ export default function LoginPage() {
               className="text-xs font-semibold uppercase tracking-wider block mb-2"
               htmlFor="email"
             >
-              Email Address Let's Go
+              Email Address
             </label>
             <Input
               id="email"
               type="email"
               placeholder="john@doe.com"
-              className="h-12 rounded-none focus-visible:ring-black"
-              required
-            />
-          </div>
-          <div>
-            <div className="flex justify-between items-center mb-2">
-              <label
-                className="text-xs font-semibold uppercase tracking-wider block"
-                htmlFor="password"
-              >
-                Password
-              </label>
-              <Link
-                href="/forgot-password"
-                className="text-xs text-muted-foreground underline hover:text-black"
-              >
-                Forgot Password?
-              </Link>
-            </div>
-            <Input
-              id="password"
-              type="password"
-              placeholder="••••••••"
               className="h-12 rounded-none focus-visible:ring-black"
               required
             />
@@ -62,21 +39,22 @@ export default function LoginPage() {
           type="submit"
           className="w-full h-12 uppercase font-bold tracking-widest rounded-none bg-black hover:bg-gray-900 text-white"
         >
-          Log In
+          Send Reset Link
         </Button>
       </form>
 
       <div className="text-center text-sm pt-4 border-t">
         <span className="text-muted-foreground mr-2">
-          Don't have an account?
+          Remembered your password?
         </span>
         <Link
-          href="/register"
+          href="/login"
           className="font-bold uppercase tracking-wider hover:underline"
         >
-          Create Account
+          Log In
         </Link>
       </div>
+      
       <div className="flex justify-center">
         <BackToHome />
       </div>

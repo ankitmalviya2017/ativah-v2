@@ -78,7 +78,6 @@ export const NewAndPopular = () => {
           1280: { slidesPerView: 5.5, spaceBetween: 24 },
         }}
         navigation={false}
-        pagination={{ clickable: true }}
       >
         {products.map((product) => (
           <ProductCard

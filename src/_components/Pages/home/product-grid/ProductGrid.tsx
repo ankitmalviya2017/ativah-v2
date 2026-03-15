@@ -8,7 +8,7 @@ const products = [
     id: 1,
     title: "Relaxed Fit Cargo Pants",
     image:
-      "https://images.unsplash.com/photo-1542272604-78019b7dca68?w=600&q=80",
+      "/images/replacements/product_cargo_pants.png",
     hoverImage:
       "https://images.unsplash.com/photo-1542272554-7802148bcae9?w=600&q=80",
     price: 89,
@@ -32,7 +32,7 @@ const products = [
     id: 4,
     title: "Pleated Trousers",
     image:
-      "https://images.unsplash.com/photo-1581561515286-3cefb4642bd1?w=600&q=80",
+      "/images/replacements/product_pleated_trousers.png",
     hoverImage:
       "https://images.unsplash.com/photo-1581561586520-22cbe6784d15?w=600&q=80",
     price: 110,

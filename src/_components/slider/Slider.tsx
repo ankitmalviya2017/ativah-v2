@@ -25,19 +25,21 @@ interface ProductSliderProps {
   slideClassName?: string;
   spaceBetween?: number;
   slidesPerView?: number | "auto";
+  customNavigation?: React.ReactNode;
 }
 
 export const Slider = ({
   children,
   breakpoints,
-  navigation = true,
-  pagination = true,
+  navigation = false,
+  pagination = false,
   autoplay = false,
   loop = false,
   className = "",
   slideClassName = "",
   spaceBetween = 20,
   slidesPerView = 1,
+  customNavigation,
 }: ProductSliderProps) => {
   return (
     <div className={`w-full relative ${className}`}>
@@ -46,17 +48,22 @@ export const Slider = ({
         spaceBetween={spaceBetween}
         slidesPerView={slidesPerView}
         breakpoints={breakpoints}
-        navigation={navigation}
+        navigation={customNavigation ? false : navigation}
         pagination={pagination}
         autoplay={autoplay}
         loop={loop}
-        className="mySwiper w-full h-full pb-12"
+        className="mySwiper w-full h-full relative"
       >
         {children.map((child, index) => (
           <SwiperSlide key={index} className={`h-auto ${slideClassName}`}>
             {child}
           </SwiperSlide>
         ))}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="pointer-events-auto">
+            {customNavigation}
+          </div>
+        </div>
       </Swiper>
     </div>
   );
