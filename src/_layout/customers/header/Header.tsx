@@ -17,6 +17,8 @@ import { checkAuth } from "../../../redux/slices/authSlice";
 import { useEffect, useState } from "react";
 import paths from "../../../navigate/paths";
 
+import { SearchInput } from "@/_components/Search/SearchInput";
+
 interface NavItem {
   label: string;
   href: string;
@@ -133,6 +135,7 @@ export const Header = () => {
   const dispatch = useDispatch<AppDispatch>();
   const isAuthenticated = useSelector((state: RootState) => state.auth.isAuthenticated);
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   useEffect(() => {
     dispatch(checkAuth());
@@ -158,88 +161,111 @@ export const Header = () => {
         <div className="flex justify-between items-center h-20"> {/* Slightly taller for premium feel */}
           {/* Mobile Menu & Logo */}
           <div className="flex items-center gap-4">
-            <Sheet>
-              <SheetTrigger
-                render={
-                  <button className="p-2 -ml-2 text-gray-900 md:hidden hover:bg-gray-100 rounded-md">
-                    <Menu size={24} />
-                  </button>
-                }
-              />
-              <SheetContent side="left" className="w-[300px] sm:w-[400px] overflow-y-auto">
-                <SheetHeader>
-                  <SheetTitle className="text-left text-2xl font-bold tracking-tighter uppercase">
-                    Ativah
-                  </SheetTitle>
-                </SheetHeader>
-                <nav className="flex flex-col gap-6 mt-8">
-                  {navLinks.map((link) => (
-                    <div key={link.id || link.href}>
-                      <Link
-                        href={link.href || `/shop/${link.id}`}
-                        className={`text-lg font-bold uppercase tracking-widest transition-colors ${
-                          link.className || "text-gray-900"
-                        }`}
-                      >
-                        {link.label}
-                      </Link>
-                      {link.id && NAVIGATION_DATA[link.id] && (
-                        <div className="mt-4 ml-4 flex flex-col gap-2">
-                           {NAVIGATION_DATA[link.id].sections.map(section => (
-                             <div key={section.title} className="mb-2">
-                                <span className="text-xs font-bold text-gray-400 uppercase tracking-widest block mb-1">{section.title}</span>
-                                {section.items.map(item => (
-                                  <Link 
-                                    key={item.label} 
-                                    href={item.href} 
-                                    className="text-sm text-gray-700 block py-1"
-                                  >
-                                    {item.label}
-                                  </Link>
-                                ))}
-                             </div>
-                           ))}
+            {!isSearchOpen && (
+              <>
+                <Sheet>
+                  <SheetTrigger
+                    render={
+                      <button className="p-2 -ml-2 text-gray-900 md:hidden hover:bg-gray-100 rounded-md">
+                        <Menu size={24} />
+                      </button>
+                    }
+                  />
+                  <SheetContent side="left" className="w-[300px] sm:w-[400px] overflow-y-auto">
+                    <SheetHeader>
+                      <SheetTitle className="text-left text-2xl font-bold tracking-tighter uppercase">
+                        Ativah
+                      </SheetTitle>
+                    </SheetHeader>
+                    <nav className="flex flex-col gap-6 mt-8">
+                      {navLinks.map((link) => (
+                        <div key={link.id || link.href}>
+                          <Link
+                            href={link.href || `/shop/${link.id}`}
+                            className={`text-lg font-bold uppercase tracking-widest transition-colors ${
+                              link.className || "text-gray-900"
+                            }`}
+                          >
+                            {link.label}
+                          </Link>
+                          {link.id && NAVIGATION_DATA[link.id] && (
+                            <div className="mt-4 ml-4 flex flex-col gap-2">
+                               {NAVIGATION_DATA[link.id].sections.map(section => (
+                                 <div key={section.title} className="mb-2">
+                                    <span className="text-xs font-bold text-gray-400 uppercase tracking-widest block mb-1">{section.title}</span>
+                                    {section.items.map(item => (
+                                      <Link 
+                                        key={item.label} 
+                                        href={item.href} 
+                                        className="text-sm text-gray-700 block py-1"
+                                      >
+                                        {item.label}
+                                      </Link>
+                                    ))}
+                                 </div>
+                               ))}
+                            </div>
+                          )}
                         </div>
-                      )}
-                    </div>
-                  ))}
-                </nav>
-              </SheetContent>
-            </Sheet>
-            <Link
-              href="/"
-              className="text-2xl font-black tracking-tighter uppercase"
-            >
-              Ativah
-            </Link>
+                      ))}
+                    </nav>
+                  </SheetContent>
+                </Sheet>
+                <Link
+                  href="/"
+                  className="text-2xl font-black tracking-tighter uppercase"
+                >
+                  Ativah
+                </Link>
+              </>
+            )}
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-10 h-full">
-            {navLinks.map((link) => (
-              <div 
-                key={link.id || link.href}
-                className="h-full flex items-center"
-                onMouseEnter={() => setActiveMenu(link.id || null)}
-              >
-                <Link
-                  href={link.href || `/shop/${link.id}`}
-                  className={`text-sm font-bold uppercase tracking-[0.2em] transition-all h-full flex items-center border-b-2 ${
-                    activeMenu === link.id ? "border-black text-black" : "border-transparent text-gray-900 hover:text-gray-600"
-                  } ${link.className || ""}`}
+          {!isSearchOpen && (
+            <nav className="hidden md:flex items-center gap-10 h-full">
+              {navLinks.map((link) => (
+                <div 
+                  key={link.id || link.href}
+                  className="h-full flex items-center"
+                  onMouseEnter={() => setActiveMenu(link.id || null)}
                 >
-                  {link.label}
-                </Link>
-              </div>
-            ))}
-          </nav>
+                  <Link
+                    href={link.href || `/shop/${link.id}`}
+                    className={`text-sm font-bold uppercase tracking-[0.2em] transition-all h-full flex items-center border-b-2 ${
+                      activeMenu === link.id ? "border-black text-black" : "border-transparent text-gray-900 hover:text-gray-600"
+                    } ${link.className || ""}`}
+                  >
+                    {link.label}
+                  </Link>
+                </div>
+              ))}
+            </nav>
+          )}
+
+          {/* Search Bar - Full width on mobile when open, integrated on desktop */}
+          {isSearchOpen && (
+            <div className="flex-1 flex justify-center px-2 md:px-0">
+              <SearchInput 
+                onClose={() => setIsSearchOpen(false)} 
+                className="max-w-2xl"
+              />
+            </div>
+          )}
 
           {/* Icons */}
           <div className="flex items-center gap-2 sm:gap-4">
-            <button className="p-2 text-gray-900 hover:bg-gray-100 rounded-full transition-colors hidden sm:block">
-              <Search size={20} />
-            </button>
-            {isAuthenticated ? (
+            {!isSearchOpen && (
+              <button 
+                onClick={() => setIsSearchOpen(true)}
+                className="p-2 text-gray-900 hover:bg-gray-100 rounded-full transition-colors"
+                aria-label="Search"
+              >
+                <Search size={20} />
+              </button>
+            )}
+            
+            {(!isSearchOpen || window.innerWidth >= 768) && isAuthenticated ? (
               <>
                 <Link
                   href="/wishlist"
@@ -257,7 +283,7 @@ export const Header = () => {
                   </span>
                 </Link>
               </>
-            ) : (
+            ) : !isSearchOpen && (
               <div className="flex items-center gap-2">
                 <Link href="/login">
                   <Button

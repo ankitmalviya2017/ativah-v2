@@ -15,7 +15,7 @@ export function ProductCard({ product }: { product: Product }) {
     >
       <Link
         href={`/products/${product.id}`}
-        className="aspect-[3/4] relative overflow-hidden bg-gray-100 rounded-lg"
+        className="aspect-3/4 relative overflow-hidden bg-gray-100 rounded-lg"
       >
         <Image
           src={product.image}
@@ -24,7 +24,7 @@ export function ProductCard({ product }: { product: Product }) {
           unoptimized
           className="object-cover transition-transform duration-500 group-hover:scale-105"
         />
-        <div className="absolute inset-x-0 bottom-0 p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 bg-gradient-to-t from-black/60 to-transparent">
+        <div className="absolute inset-x-0 bottom-0 p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 bg-linear-to-t from-black/60 to-transparent">
           <p className="text-white text-sm font-medium">Quick View</p>
         </div>
       </Link>

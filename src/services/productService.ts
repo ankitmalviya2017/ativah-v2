@@ -11,6 +11,8 @@ export const getFilteredProducts = async (
   // Since this is a demo, we will simulate the delay and return fake products
   await new Promise((resolve) => setTimeout(resolve, 800));
 
+  const searchTerm = (searchParams.search as string)?.toLowerCase() || "";
+
   const mockProducts: Product[] = Array.from({ length: 8 }, (_, i) => ({
     id: `prod-${i + 1}`,
     name: `Premium Item ${i + 1} - ${segments.join(" ")}`,
@@ -28,11 +30,11 @@ export const getFilteredProducts = async (
     inStock: true,
     rating: 4.5,
     reviewsCount: 128,
-  }));
+  })).filter(p => !searchTerm || p.name.toLowerCase().includes(searchTerm));
 
   return {
     products: mockProducts,
-    total: 8,
+    total: mockProducts.length,
     page: 1,
     limit: 10,
     totalPages: 1,
@@ -55,8 +57,12 @@ export const getProductById = async (id: string): Promise<Product | null> => {
     originalPrice: 2999,
     currency: "INR",
     images: [
-      "https://placehold.co/600x800/png",
-      "https://placehold.co/600x800/png",
+      "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1598033129183-c4f50c717658?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1598033129183-c4f50c717658?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1598033129183-c4f50c717658?q=80&w=800&auto=format&fit=crop",
     ],
     brand: "Nike",
     category: "Tshirts",

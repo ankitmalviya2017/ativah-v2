@@ -61,7 +61,7 @@ export const HeroSlider = () => {
                 sizes="100vw"
               />
               {/* Overlay gradient for readability */}
-              <div className="absolute inset-0 bg-black/30 bg-gradient-to-t from-black/60 to-transparent" />
+              <div className="absolute inset-0 bg-black/30 bg-linear-to-t from-black/60 to-transparent" />
             </div>
 
             {/* Content */}

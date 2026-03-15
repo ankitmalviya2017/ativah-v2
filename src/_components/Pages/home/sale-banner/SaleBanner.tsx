@@ -41,7 +41,7 @@ const saleSlides = [
 export const SaleBanner = () => {
   return (
     <div className="w-full">
-      <SectionContainer className="!py-0">
+      <SectionContainer className="py-0!">
         <div className="relative w-full h-[400px] md:h-[500px] lg:h-[600px] overflow-hidden group rounded-2xl shadow-2xl">
           <Slider
             slidesPerView={1}
@@ -60,11 +60,11 @@ export const SaleBanner = () => {
                   src={slide.image}
                   alt={slide.title}
                   fill
-                  className="object-cover object-center group-hover:scale-105 transition-transform duration-[2000ms]"
+                  className="object-cover object-center group-hover:scale-105 transition-transform duration-2000"
                 />
                 
                 {/* Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />
+                <div className="absolute inset-0 bg-linear-to-r from-black/70 via-black/40 to-transparent" />
 
                 {/* Content */}
                 <div className="absolute inset-0 flex flex-col justify-center px-8 md:px-16 lg:px-24">
